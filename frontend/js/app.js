@@ -51,20 +51,20 @@ async function loadProviders() {
     ttsProviders = ttsData.providers || [];
     populateDropdown('tts-provider', ttsProviders, 'Select TTS Provider');
     populateDropdown('chat-tts-provider', ttsProviders, 'Select TTS Provider');
-    // Set default TTS to Hamsa for Chat Agent
-    setDropdownValue('chat-tts-provider', 'hamsa-tts');
+    // Set default TTS to ElevenLabs for Chat Agent
+    setDropdownValue('chat-tts-provider', 'elevenlabs-tts');
 
-    // Load TTS voices for Hamsa to set default voice
+    // Load TTS voices for ElevenLabs to set default voice
     try {
-      const hamsaVoices = await getTTSVoices('hamsa-tts');
-      populateDropdown('chat-tts-voice', hamsaVoices.voices || [], 'Select Voice');
-      // Set default voice to Eman
-      const emanVoice = hamsaVoices.voices?.find(v => v.name === 'Eman' || v.id === 'Eman');
-      if (emanVoice) {
-        setDropdownValue('chat-tts-voice', emanVoice.id);
+      const elevenlabsVoices = await getTTSVoices('elevenlabs-tts');
+      populateDropdown('chat-tts-voice', elevenlabsVoices.voices || [], 'Select Voice');
+      // Set default voice to Bella
+      const bellaVoice = elevenlabsVoices.voices?.find(v => v.name === 'Bella' || v.id === 'EXAVITQu4vr4xnSDxMaL');
+      if (bellaVoice) {
+        setDropdownValue('chat-tts-voice', bellaVoice.id);
       }
     } catch (error) {
-      console.error('Failed to load Hamsa voices:', error);
+      console.error('Failed to load ElevenLabs voices:', error);
     }
 
     // Load LLM providers
@@ -77,8 +77,8 @@ async function loadProviders() {
       const models = modelsData.models || [];
       populateDropdown('llm-model', models, 'Select Model');
       populateDropdown('chat-llm-model', models, 'Select LLM Model');
-      // Set default LLM to GLM 4.5 Air
-      setDropdownValue('chat-llm-model', 'z-ai/glm-4.5-air');
+      // Set default LLM to GPT 4.1 Mini
+      setDropdownValue('chat-llm-model', 'openai/gpt-4.1-mini');
     }
   } catch (error) {
     console.error('Failed to load providers:', error);
