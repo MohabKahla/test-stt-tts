@@ -48,9 +48,19 @@ A comprehensive web-based testing platform for Speech-to-Text (STT), Text-to-Spe
    ```
 
 4. **Start the application:**
+
+   **Option A: Using the deployment script (Recommended for Amazon Linux/servers)**
+   ```bash
+   chmod +x deploy.sh
+   ./deploy.sh
+   ```
+
+   **Option B: Using docker-compose directly**
    ```bash
    docker-compose up -d
    ```
+
+   If you get a "buildx" error with Option B, use Option A instead.
 
 5. **Access the application:**
    - Frontend: http://localhost:3000
