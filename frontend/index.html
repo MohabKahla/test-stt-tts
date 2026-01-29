@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STT/TTS/LLM Testing Playground</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>STT/TTS/LLM Testing Playground</h1>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="chat-agent">Chat Agent</button>
+      <button class="tab-btn" data-tab="playground">Playground</button>
+    </div>
+
+    <!-- Tab 1: Chat Agent -->
+    <div id="chat-agent-tab" class="tab-content active">
+      <div class="chat-container">
+        <!-- Provider Selectors -->
+        <div class="provider-selectors">
+          <div class="provider-row">
+            <label>STT Provider:</label>
+            <select id="chat-stt-provider" class="provider-select">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="provider-row">
+            <label>LLM Model:</label>
+            <select id="chat-llm-model" class="provider-select">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="provider-row">
+            <label>TTS Provider:</label>
+            <select id="chat-tts-provider" class="provider-select">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="provider-row">
+            <label>TTS Voice:</label>
+            <select id="chat-tts-voice" class="provider-select">
+              <option value="">Select TTS provider first</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Status Indicator -->
+        <div id="chat-status" class="status-indicator ready">Ready</div>
+
+        <!-- Chat History -->
+        <div id="chat-history" class="chat-history">
+          <!-- Messages will be added here -->
+        </div>
+
+        <!-- Voice Controls -->
+        <div class="voice-controls">
+          <button id="chat-record-btn" class="btn btn-large">🎤 Push to Talk</button>
+          <button id="clear-chat-btn" class="btn btn-secondary">Clear Chat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Playground -->
+    <div id="playground-tab" class="tab-content">
+      <div class="playground-container">
+        <!-- STT Section -->
+        <section class="stt-section">
+          <h2>Speech-to-Text</h2>
+          <div class="form-group">
+            <label for="stt-provider">STT Provider:</label>
+            <select id="stt-provider" class="provider-select">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <button id="record-btn" class="btn btn-primary">🎤 Record</button>
+          <div id="stt-status" class="status"></div>
+          <div id="transcription-output" class="output-box"></div>
+          <audio id="recorded-audio" controls></audio>
+        </section>
+
+        <!-- LLM Quick Test -->
+        <section class="llm-section">
+          <h2>LLM Quick Test</h2>
+          <div class="form-group">
+            <label for="llm-model">LLM Model:</label>
+            <select id="llm-model" class="provider-select">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="llm-input">Message:</label>
+            <textarea id="llm-input" class="text-input" rows="4" placeholder="Enter your message..."></textarea>
+          </div>
+          <button id="llm-send-btn" class="btn btn-primary">Send</button>
+          <div id="llm-response" class="output-box"></div>
+        </section>
+
+        <!-- TTS Section -->
+        <section class="tts-section">
+          <h2>Text-to-Speech</h2>
+          <div class="form-group">
+            <label for="tts-provider">TTS Provider:</label>
+            <select id="tts-provider" class="provider-select">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tts-voice">Voice:</label>
+            <select id="tts-voice" class="provider-select">
+              <option value="">Select provider first</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tts-text">Text to synthesize:</label>
+            <textarea id="tts-text" class="text-input" rows="4" placeholder="Enter text to synthesize..."></textarea>
+          </div>
+          <button id="synthesize-btn" class="btn btn-primary">🔊 Synthesize</button>
+          <div id="tts-status" class="status"></div>
+          <audio id="synthesized-audio" controls></audio>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
