@@ -77,8 +77,8 @@ async function loadProviders() {
       const models = modelsData.models || [];
       populateDropdown('llm-model', models, 'Select Model');
       populateDropdown('chat-llm-model', models, 'Select LLM Model');
-      // Set default LLM to GPT 4.1 Mini
-      setDropdownValue('chat-llm-model', 'openai/gpt-4.1-mini');
+      // Set default LLM to GPT 5 Mini
+      setDropdownValue('chat-llm-model', 'openai/gpt-5-mini');
     }
   } catch (error) {
     console.error('Failed to load providers:', error);

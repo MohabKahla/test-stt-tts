@@ -6,6 +6,7 @@ export interface OpenRouterModel {
 
 export const OPENROUTER_MODELS: OpenRouterModel[] = [
   // OpenAI
+  { id: 'openai/gpt-5-mini', name: 'GPT 5 Mini', provider: 'OpenAI' },
   { id: 'openai/gpt-4.1-mini', name: 'GPT 4.1 Mini', provider: 'OpenAI' },
   { id: 'openai/gpt-4o-mini', name: 'GPT-4o Mini', provider: 'OpenAI' },
 
