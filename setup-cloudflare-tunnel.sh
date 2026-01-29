@@ -32,13 +32,32 @@ nohup cloudflared tunnel --url http://localhost:3000 > cloudflare-tunnel.log 2>&
 TUNNEL_PID=$!
 echo $TUNNEL_PID > cloudflare-tunnel.pid
 
-# Wait a moment for tunnel to start
-sleep 3
+# Wait for tunnel to start and get URL
+echo "⏳ Waiting for tunnel to initialize..."
+sleep 5
+
+# Try multiple times to get the URL
+URL=""
+for i in {1..10}; do
+    URL=$(grep -o "https://.*\.trycloudflare\.com" cloudflare-tunnel.log | head -1)
+    if [ -n "$URL" ]; then
+        break
+    fi
+    sleep 2
+    echo "   Still waiting... ($i/10)"
+done
 
 # Display the URL
 echo ""
-echo "🔗 Tunnel started! Your URL is:"
-tail -n 20 cloudflare-tunnel.log | grep -o "https://.*\.trycloudflare\.com" | head -1
+if [ -n "$URL" ]; then
+    echo "🔗 Your HTTPS URL is:"
+    echo "   $URL"
+    echo ""
+    echo "✅ Send this URL to your client!"
+else
+    echo "⚠️  URL not found yet. Check manually with:"
+    echo "   tail -f cloudflare-tunnel.log"
+fi
 
 echo ""
 echo "📝 Tunnel is running in background (PID: $TUNNEL_PID)"
